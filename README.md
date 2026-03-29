@@ -23,7 +23,9 @@ A React Native multiplatform helper app for solving Wordle puzzles faster! Built
 
 ## 📲 Try It Now
 
-### Expo Go (Quickest Way)
+### Web version availble [here](https://wordle-wizard-eosin.vercel.app/)
+
+### Expo Go (Quickest Way) [Coming Soon]
 1. Install [Expo Go](https://expo.dev/go) on your iOS or Android device
 2. Scan the QR code below (available after first EAS build is published)
 
