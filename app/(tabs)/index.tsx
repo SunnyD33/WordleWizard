@@ -226,7 +226,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={[styles.container, isDark && styles.containerDark]} edges={["top"]}>
       <KeyboardAvoidingView
-        style={styles.container}
+        style={[styles.container, isDark && styles.containerDark]}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <View style={[styles.header, isDark && styles.headerDark]}>
@@ -252,6 +252,7 @@ export default function HomeScreen() {
                 key={index}
                 row={row}
                 isActive={index === currentRow}
+                isDark={isDark}
                 onTilePress={(tileIndex) => handleTilePress(index, tileIndex)}
               />
             ))}

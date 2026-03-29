@@ -13,6 +13,7 @@ interface LetterTileProps {
   status: LetterStatus;
   onPress?: () => void;
   disabled?: boolean;
+  isDark?: boolean;
 }
 
 const COLORS = {
@@ -22,7 +23,9 @@ const COLORS = {
   'not-in-word': '#787c7e',
 };
 
-export function LetterTile({ letter, status, onPress, disabled = false }: LetterTileProps) {
+const DARK_EMPTY_COLOR = '#3a3a3c';
+
+export function LetterTile({ letter, status, onPress, disabled = false, isDark = false }: LetterTileProps) {
   const scale = useSharedValue(1);
 
   const animatedStyle = useAnimatedStyle(() => ({
@@ -37,6 +40,9 @@ export function LetterTile({ letter, status, onPress, disabled = false }: Letter
     scale.value = withSpring(1, { damping: 10, stiffness: 400 });
   };
 
+  const backgroundColor = status === 'empty' && isDark ? DARK_EMPTY_COLOR : COLORS[status];
+  const borderColor = status === 'empty' ? (isDark ? '#565758' : '#d3d6da') : 'transparent';
+
   return (
     <Pressable
       onPress={onPress}
@@ -44,7 +50,7 @@ export function LetterTile({ letter, status, onPress, disabled = false }: Letter
       onPressOut={handlePressOut}
       disabled={disabled || !onPress}
     >
-      <Animated.View style={[styles.tile, { backgroundColor: COLORS[status] }, animatedStyle]}>
+      <Animated.View style={[styles.tile, { backgroundColor, borderColor }, animatedStyle]}>
         <Text style={styles.letter}>{letter.toUpperCase()}</Text>
       </Animated.View>
     </Pressable>

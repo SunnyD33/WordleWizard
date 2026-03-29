@@ -7,9 +7,10 @@ interface GuessRowProps {
   row: GuessRowType;
   onTilePress?: (index: number) => void;
   isActive?: boolean;
+  isDark?: boolean;
 }
 
-export function GuessRow({ row, onTilePress, isActive = false }: GuessRowProps) {
+export function GuessRow({ row, onTilePress, isActive = false, isDark = false }: GuessRowProps) {
   return (
     <View style={[styles.row, isActive && styles.activeRow]}>
       {row.tiles.map((tile, index) => (
@@ -17,6 +18,7 @@ export function GuessRow({ row, onTilePress, isActive = false }: GuessRowProps) 
           key={index}
           letter={tile.letter}
           status={tile.status}
+          isDark={isDark}
           onPress={onTilePress ? () => onTilePress(index) : undefined}
         />
       ))}
