@@ -1,98 +1,96 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
+import { Collapsible } from "@/components/ui/collapsible";
+import ParallaxScrollView from "@/components/parallax-scroll-view";
+import { ThemedText } from "@/components/themed-text";
+import { ThemedView } from "@/components/themed-view";
+import { IconSymbol } from "@/components/ui/icon-symbol";
+import { Fonts } from "@/constants/theme";
 
-export default function TabTwoScreen() {
+export default function InstructionsScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: "#6aaa64", dark: "#538d4e" }}
       headerImage={
         <IconSymbol
           size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
+          color="#ffffff"
+          name="questionmark.circle"
           style={styles.headerImage}
         />
-      }>
+      }
+    >
       <ThemedView style={styles.titleContainer}>
         <ThemedText
           type="title"
           style={{
             fontFamily: Fonts.rounded,
-          }}>
-          Explore
+          }}
+        >
+          How to Use
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
+      <ThemedText>
+        Wordle Wizard helps you find possible words based on your Wordle
+        guesses.
+      </ThemedText>
+
+      <Collapsible title="Getting Started">
         <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
+          1. Tap letters on the keyboard to fill in your guess{"\n"}
+          2. Mark each letter&apos;s status (gray, yellow, or green){"\n"}
+          3. See suggested words that match your clues{"\n"}
+          4. Use the Reset button to clear and start over
         </ThemedText>
       </Collapsible>
-      <Collapsible title="Images">
+
+      <Collapsible title="Marking Letter Status">
         <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
+          Before typing a letter, select its status:{"\n\n"}
+          <ThemedText type="defaultSemiBold">✓ Correct</ThemedText> - Letter is
+          in the correct position (green){"\n"}
+          <ThemedText type="defaultSemiBold">? Wrong Spot</ThemedText> - Letter
+          is in the word but wrong position (yellow){"\n"}
+          <ThemedText type="defaultSemiBold">✗ Not In Word</ThemedText> - Letter
+          is not in the word (gray)
         </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
       </Collapsible>
-      <Collapsible title="Light and dark mode components">
+
+      <Collapsible title="Changing Letter Status">
         <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
+          You can also tap any filled letter tile to cycle through the statuses:
+          {"\n\n"}
+          Gray → Yellow → Green → Gray...
         </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
       </Collapsible>
-      <Collapsible title="Animations">
+
+      <Collapsible title="Word Suggestions">
         <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
+          As you enter letters, the app filters through thousands of possible
+          Wordle answers and shows you the most likely matches based on your
+          clues.
         </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
+      </Collapsible>
+
+      <Collapsible title="Hard Mode">
+        <ThemedText>
+          Enable Hard Mode in Settings for an extra challenge!{"\n\n"}
+          <ThemedText type="defaultSemiBold">When Hard Mode is ON:</ThemedText>
+          {"\n"}• Green letters (correct position) must be reused in the same
+          spot{"\n"}• Yellow letters (wrong position) must be included in future
+          guesses{"\n"}• The app validates your guesses and alerts you if they
+          break the rules{"\n"}• Suggestions are filtered to only show valid
+          hard mode words{"\n\n"}
+          Perfect for players who want to practice Wordle`&apos;s hard mode!
+        </ThemedText>
+      </Collapsible>
+
+      <Collapsible title="Tips">
+        <ThemedText>
+          • You only need to enter one guess at a time{"\n"}• The suggestions
+          update instantly as you type{"\n"}• Use the backspace key (⌫) to
+          delete letters{"\n"}• Hit Reset to clear everything and start fresh
+        </ThemedText>
       </Collapsible>
     </ParallaxScrollView>
   );
@@ -100,13 +98,13 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   headerImage: {
-    color: '#808080',
+    color: "#808080",
     bottom: -90,
     left: -35,
-    position: 'absolute',
+    position: "absolute",
   },
   titleContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     gap: 8,
   },
 });
