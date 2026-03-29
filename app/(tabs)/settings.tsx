@@ -35,6 +35,10 @@ export default function SettingsScreen() {
     setThemeMode(mode);
     try {
       await AsyncStorage.setItem('themeMode', mode);
+      // Notify same-tab listeners (storage events only fire cross-tab by default)
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('storage'));
+      }
     } catch (error) {
       console.log('Error saving theme:', error);
     }
