@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 32,
     width: '100%',
+    backgroundColor: '#ffffff',
   },
   emptyContainerDark: {
     backgroundColor: '#1e1e1e',
